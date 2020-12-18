@@ -215,6 +215,7 @@ boutonAjout.addEventListener('click', function(){
             // Créer un dexième span pour le remplacer
             let spanTache2 = document.createElement('span');
             spanTache2.innerHTML = "Êtes-vous sûr de vouloir supprimer cette tâche ?";
+            spanTache2.style.color = "red";
             divSpan.append(spanTache2);
             // Créer des boutons OUI et NON
             let boutonOUI = document.createElement('button');
