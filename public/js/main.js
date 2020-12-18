@@ -126,7 +126,7 @@ boutonAjout.addEventListener('click', function(){
         let divSpan = document.createElement('div');
         let spanTache = document.createElement('span');
         spanTache.innerHTML = div1Input.value;
-        divSpan.style.width = "85%"
+        divSpan.style.width = "80%"
         divSpan.append(spanTache);
 
             // div Icon et icons
