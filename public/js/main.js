@@ -14,7 +14,7 @@ section.append(divTitre, divContenu);
 
     // DivTitre
 let h1 = document.createElement('h1');
-h1.innerHTML = "Ma ToDo List";
+h1.innerHTML = "Tido List";
 divTitre.append(h1);
 
     // DivContenu
@@ -107,6 +107,8 @@ for (let i = 0; i < allBoutons.length; i++) {
 
 //////////////////////////////////////////////////////////
 ////////////////////// Mise en fonction ////////////////////
+// Focus sur l'input
+div1Input.focus();
 
 // Bouton Ajout
 boutonAjout.addEventListener('click', function(){
@@ -126,11 +128,15 @@ boutonAjout.addEventListener('click', function(){
         let divSpan = document.createElement('div');
         let spanTache = document.createElement('span');
         spanTache.innerHTML = div1Input.value;
-        divSpan.style.width = "80%"
+        divSpan.style.width = "75%"
         divSpan.append(spanTache);
 
             // div Icon et icons
         let divIcon = document.createElement('div');
+                // Icon Importance
+        let iconImportant = document.createElement('i');
+        iconImportant.setAttribute('class', "fas fa-exclamation");
+        iconImportant.style.marginRight = "25px";
                 // Icon check
         let iconCheck = document.createElement('i');
         iconCheck.setAttribute('class', "fas fa-check-circle");
@@ -147,7 +153,7 @@ boutonAjout.addEventListener('click', function(){
         iconDelete.style.marginRight = "25px";
         iconDelete.style.color = "red";
         iconDelete.setAttribute('id', "iconDel");
-        divIcon.append(iconCheck, iconEdit, iconDelete);
+        divIcon.append(iconImportant,iconCheck, iconEdit, iconDelete);
 
         divTache.style.display = "flex";
         divTache.style.justifyContent = "space-between";
@@ -159,6 +165,24 @@ boutonAjout.addEventListener('click', function(){
         // Valeur de Input
         div1Input.value = "";
         
+        // Icon Importance
+        iconImportant.addEventListener('click', function(){
+            divsC[2].prepend(divTache);
+            iconImportant.style.display = "none"
+            let iconDanger = document.createElement('i');
+            iconDanger.setAttribute('class', "fas fa-exclamation-triangle");
+            iconDanger.style.color = "purple";
+            iconDanger.style.marginRight = "25px";
+            divIcon.prepend(iconDanger);
+
+            // Icon Danger (remettre en importance normale)
+            iconDanger.addEventListener('click', function(){
+                iconImportant.style.display = "inline-block";
+                iconDanger.style.display = "none"
+                divsC[2].append(divTache);
+            })
+        })
+
         // 1er icon : Valider la tâche
         iconCheck.addEventListener('click', function(){
             if(divTache.style.backgroundColor == "green"){
@@ -170,6 +194,7 @@ boutonAjout.addEventListener('click', function(){
         // 2ème icon : Modifier la tâche
         iconEdit.addEventListener('click', function(){
             spanTache.style.display = "none";
+            iconImportant.style.display = "none";
             iconCheck.style.display = "none";
             iconEdit.style.display = "none";
             iconDelete.style.display = "none";
@@ -180,21 +205,23 @@ boutonAjout.addEventListener('click', function(){
             iconSave.style.color = "Khaki"
             divIcon.append(iconSave);
 
+            // Input pour modifier
+            let inputEdit = document.createElement('input');
+            divSpan.append(inputEdit);
+            inputEdit.focus();
+
             // Sauvegarder
             iconSave.addEventListener('click', function(){
                 inputEditValue = inputEdit.value;
                 inputEdit.style.display = "none";
                 spanTache.innerHTML = inputEditValue;
                 spanTache.style.display = "block";
+                iconImportant.style.display = "inline-block";
                 iconCheck.style.display = "inline-block";
                 iconEdit.style.display = "inline-block";
                 iconDelete.style.display = "inline-block";
                 iconSave.style.display = "none";
             });
-
-            // Input pour modifier
-            let inputEdit = document.createElement('input');
-            divSpan.append(inputEdit);
 
             // Sauvegarder avec la touche ENTER
             body.addEventListener('keydown', function(e){
@@ -209,6 +236,7 @@ boutonAjout.addEventListener('click', function(){
         iconDelete.addEventListener('click', function(){
             // Display
             spanTache.style.display = "none";
+            iconImportant.style.display = "none";
             iconCheck.style.display = "none";
             iconEdit.style.display = "none";
             iconDelete.style.display = "none";
@@ -240,6 +268,7 @@ boutonAjout.addEventListener('click', function(){
             });
             // Bouton NON
             boutonNON.addEventListener('click', function(){
+                iconImportant.style.display = "inline-block";
                 iconCheck.style.display = "inline-block";
                 iconEdit.style.display = "inline-block";
                 iconDelete.style.display = "inline-block";
