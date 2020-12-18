@@ -116,7 +116,7 @@ boutonAjout.addEventListener('click', function(){
         let divTache = document.createElement('div');
         divTache.setAttribute('class', "divTache");
         divTache.style.backgroundColor = "Gainsboro";
-        divTache.style.height = "45px";
+        divTache.style.height = "max-content";
         divTache.style.padding = "2%";
         divTache.style.margin = "1% 0%";
         divTache.style.borderRadius = "4px";
@@ -126,6 +126,7 @@ boutonAjout.addEventListener('click', function(){
         let divSpan = document.createElement('div');
         let spanTache = document.createElement('span');
         spanTache.innerHTML = div1Input.value;
+        divSpan.style.width = "85%"
         divSpan.append(spanTache);
 
             // div Icon et icons
@@ -222,12 +223,14 @@ boutonAjout.addEventListener('click', function(){
             boutonOUI.style.color = "white";
             boutonOUI.style.marginRight = "5px";
             boutonOUI.style.borderRadius = "5px";
+            boutonOUI.style.border = "none";
             let boutonNON = document.createElement('button');
             boutonNON.innerHTML = "NON";
             boutonNON.style.backgroundColor = "red";
             boutonNON.style.color = "white";
             boutonNON.style.marginRight = "5px";
             boutonNON.style.borderRadius = "5px";
+            boutonNON.style.border = "none";
             divIcon.append(boutonOUI, boutonNON);
 
             // Bouton OUI
